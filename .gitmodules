@@ -1,0 +1,6 @@
+[submodule "rabbit-producer"]
+	path = rabbit-producer
+	url = git@github.com:Se1juro/rabbit-nest-producer.git
+[submodule "rabbit-consumer"]
+	path = rabbit-consumer
+	url = git@github.com:Se1juro/rabbit-nest-consumer.git

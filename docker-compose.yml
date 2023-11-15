@@ -11,6 +11,17 @@ services:
       - ./data:/data/db
     networks:
       - network-mongo-rabbit
+  nginx-api-rabbit-consumers:
+    build:
+      context: ./nginx
+    container_name: nginx-nest-rabbut
+    hostname: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - nginx-api-net
   rabbitmq:
     container_name: nestjs-rabbitmq
     image: rabbitmq:3-management
@@ -22,4 +33,6 @@ services:
       - RABBITMQ_DEFAULT_PASS=daniel1234
 networks:
   network-mongo-rabbit:
+    driver: bridge
+  nginx-api-net:
     driver: bridge
