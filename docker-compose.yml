@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mongodb:
+    build:
+      context: ./MongoDB
+      dockerfile: Dockerfile
+    container_name: mongodb-rabbit-nest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    networks:
+      - network-mongo-rabbit
+  rabbitmq:
+    container_name: nestjs-rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=daniel-admin
+      - RABBITMQ_DEFAULT_PASS=daniel1234
+networks:
+  network-mongo-rabbit:
+    driver: bridge
